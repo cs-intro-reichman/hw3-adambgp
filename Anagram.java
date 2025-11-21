@@ -73,8 +73,6 @@ public class Anagram {
 			newString= newString +(char)str.charAt(i);
 
 			
-		}else if(ch== 32){
-			newString= newString + ch;
 		}
 		i++;
 		
