@@ -28,20 +28,27 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		boolean check = true;
+		
 	        str1= preProcess(str1);
-			 str2= preProcess(str2);
-		for(int i=0 ; i<str1.length()&&check==true ; i++){
-			char ch = (char)str1.charAt(i);
-           if(str2.indexOf(ch)==-1){
-			check=false;
+			String newstr2= preProcess(str2);
+			 if(str1.length()!=newstr2.length()){
+				return false;
+			 }
+		  for(int i=0 ; i<str1.length() ; i++){
+			char ch = str1.charAt(i);
+            int str22 = newstr2.indexOf(ch);
+
+			if(str22==-1){
+			return false;
 		   }else{
-			check=true;
+
+			newstr2= newstr2.substring(0,str22)+ newstr2.substring(str22+1);
 		   }
+
 		}
 		
 		
-		return check;
+		return true;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
@@ -49,17 +56,28 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String newString = "";
+
 		int i= 0;
+
 		while(i<str.length())
-		{char ch = str.charAt(i);
-		if(ch>64 && ch<91){
+         {
+			char ch = str.charAt(i);
+
+		if(ch>=65 && ch<=90){
+
 			newString= newString +(char)(str.charAt(i)+32);
-			i++;
-		}else if(ch>96 && ch<123){
+
+			
+		}else if(ch>=97 && ch<=122){
+
 			newString= newString +(char)str.charAt(i);
-			i++;
-		}else{i++;
+
+			
+		}else if(ch== 32){
+			newString= newString + ch;
 		}
+		i++;
+		
 	}
 		return newString;
 	} 
@@ -71,7 +89,7 @@ public class Anagram {
 		String newstr="";
 		while(old.length()>0){
 		     
-			int random=(int)(Math.random()*(str.length()));
+			int random=(int)(Math.random()*(old.length()));
 
 			char boom= old.charAt(random);
              newstr = newstr +boom;
