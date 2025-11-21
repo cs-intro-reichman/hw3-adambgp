@@ -70,7 +70,7 @@ public class LoanCalc {
 			H=mid;
 		}
 
-		}
+		}iterationCounter= iterationCounter-1;
 		return mid;
     }
 }
